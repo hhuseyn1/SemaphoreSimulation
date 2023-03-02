@@ -1,28 +1,50 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
-namespace Source
+namespace Source;
+public partial class MainWindow : Window
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+    private int _numValue = 0;
+
+    public int NumValue
     {
-        public MainWindow()
+        get { return _numValue; }
+        set
         {
-            InitializeComponent();
+            _numValue = value;
+            txtNum.Text = value.ToString();
         }
+    }
+    public MainWindow()
+    {
+        InitializeComponent();
+        txtNum.Text = _numValue.ToString();
+
+    }
+    private void cmdDown_Click(object sender, RoutedEventArgs e)
+    {
+        if(NumValue>0)
+            NumValue--;
+        else
+            MessageBox.Show("Semaphore places must greater than 0","Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+    }
+
+    private void cmdUp_Click(object sender, RoutedEventArgs e)
+    {
+        if (NumValue < 15)
+            NumValue++;
+        else
+            MessageBox.Show("Semaphore places must less than 15","Warning",MessageBoxButton.OK,MessageBoxImage.Warning);
+    }
+
+    private void txtNum_TextChanged(object sender,TextChangedEventArgs e)
+    {
+        if (txtNum == null)
+        {
+            return;
+        }
+
+        if (!int.TryParse(txtNum.Text, out _numValue))
+            txtNum.Text = _numValue.ToString();
     }
 }

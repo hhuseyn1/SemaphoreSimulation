@@ -6,7 +6,7 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:Source"
         mc:Ignorable="d"
-        Title="MainWindow" Height="300" Width="750">
+        Title="MainWindow" Height="450" Width="750">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -24,10 +24,18 @@
         <TextBlock Grid.Row="0" Grid.Column="1" FontSize="15.5" Text="Working threads" VerticalAlignment="Bottom"/>
         <TextBlock Grid.Row="0" Grid.Column="3" FontSize="15.5" Text="Waiting threads" VerticalAlignment="Bottom"/>
         <TextBlock Grid.Row="0" Grid.Column="5" FontSize="15.5" Text="Created threads" VerticalAlignment="Bottom"/>
-        
-        <StackPanel Grid.Row="2" Grid.Column="1">
-            <TextBlock Text="Places in Semaphore"/>
-        </StackPanel>
+
+        <Grid Grid.Row="2" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1.2*"/>
+                <RowDefinition Height="1.4*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="Places in Semaphore" FontSize="16"/>
+            <TextBox Width="100" FontSize="20" BorderThickness="0" Grid.Row="1" x:Name="txtNum" x:FieldModifier="private" Text="0" TextChanged="txtNum_TextChanged" HorizontalAlignment="Left" />
+            <Button Grid.Row="1" x:Name="cmdUp" x:FieldModifier="private" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="10" Padding="0,-4,0,0" Content="▲" Width="15" Click="cmdUp_Click" Height="15" BorderThickness="0" />
+            <Button Grid.Row="1" x:Name="cmdDown" x:FieldModifier="private" FontSize="10" HorizontalAlignment="Right" Margin="0 0 16 0" VerticalAlignment="Center" Padding="0,-4,0,0" Content="▼" Width="15" Height="15" Click="cmdDown_Click" BorderThickness="0"  />
+        </Grid>
 
         <Button Grid.Row="2" Grid.Column="7" Content="Create new" Width="100" Height="30" HorizontalAlignment="Center" BorderThickness="0" FontWeight="SemiBold"/>
     </Grid>
