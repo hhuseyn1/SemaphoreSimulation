@@ -3,10 +3,32 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:Source"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="300" Width="750">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="5*"/>    
+            <RowDefinition/>    
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="1" FontSize="15.5" Text="Working threads" VerticalAlignment="Bottom"/>
+        <TextBlock Grid.Row="0" Grid.Column="3" FontSize="15.5" Text="Waiting threads" VerticalAlignment="Bottom"/>
+        <TextBlock Grid.Row="0" Grid.Column="5" FontSize="15.5" Text="Created threads" VerticalAlignment="Bottom"/>
+        
+        <StackPanel Grid.Row="2" Grid.Column="1">
+            <TextBlock Text="Places in Semaphore"/>
+        </StackPanel>
 
+        <Button Grid.Row="2" Grid.Column="7" Content="Create new" Width="100" Height="30" HorizontalAlignment="Center" BorderThickness="0" FontWeight="SemiBold"/>
     </Grid>
 </Window>
