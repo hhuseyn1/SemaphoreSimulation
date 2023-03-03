@@ -120,13 +120,4 @@ public partial class MainWindow : Window, INotifyPropertyChanged
         }
     }
 
-    private void WorkingLBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-    {
-        if (CreatedLBox.SelectedItem is Thread t)
-        {
-            Working.Remove(t);
-
-            t.Start(semaphore);
-        }
-    }
 }
