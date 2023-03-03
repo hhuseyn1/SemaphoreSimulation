@@ -9,7 +9,7 @@ using System.Windows.Input;
 namespace Source;
 public partial class MainWindow : Window, INotifyPropertyChanged
 {
-    private int threadCount = 0;
+    private int threadCount = 1;
     public int _numValue = 3;
 
     public event PropertyChangedEventHandler? PropertyChanged;
@@ -41,12 +41,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
         Waiting = new();
         Working = new();
 
-        for (int i = 0; i < 3; i++)
-        {
-            var t = new Thread(ThreadWork);
-            t.Name = "Thread "+ threadCount++;
-            Working.Add(t);
-        }
+        
     }
     private void cmdDown_Click(object sender, RoutedEventArgs e)
     {
@@ -77,6 +72,9 @@ public partial class MainWindow : Window, INotifyPropertyChanged
 
     private void Button_Click(object sender, RoutedEventArgs e)
     {
+
+        
+
         var thread = new Thread(ThreadWork);
         thread.Name = $"Thread {threadCount++}";
         Created.Add(thread);
@@ -92,9 +90,10 @@ public partial class MainWindow : Window, INotifyPropertyChanged
                 {
                     var t = Thread.CurrentThread;
                     Dispatcher.Invoke(() => t.Name=$"Thread {threadCount++}");
+                    if (Working.Count >= NumValue) return;
                     Dispatcher.Invoke(() => Waiting.Remove(t));
                     Dispatcher.Invoke(() => Working.Add(t));
-                    Thread.Sleep(1000);
+                    Thread.Sleep(3000);
                     Dispatcher.Invoke(() => Working.Remove(t));
                 }
                 catch (Exception ex)
