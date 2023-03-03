@@ -1,10 +1,14 @@
-﻿using System.Windows;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Source;
-public partial class MainWindow : Window
+public partial class MainWindow : Window,INotifyPropertyChanged
 {
-    private int _numValue = 0;
+    public int _numValue=3;
+
+    public event PropertyChangedEventHandler? PropertyChanged;
 
     public int NumValue
     {
@@ -12,14 +16,15 @@ public partial class MainWindow : Window
         set
         {
             _numValue = value;
-            txtNum.Text = value.ToString();
+            PropertyChanged?.Invoke(
+               this, new PropertyChangedEventArgs(nameof(NumValue)));
         }
+
     }
     public MainWindow()
     {
         InitializeComponent();
-        txtNum.Text = _numValue.ToString();
-
+        DataContext = this;
     }
     private void cmdDown_Click(object sender, RoutedEventArgs e)
     {
@@ -31,20 +36,20 @@ public partial class MainWindow : Window
 
     private void cmdUp_Click(object sender, RoutedEventArgs e)
     {
-        if (NumValue < 15)
+        if (NumValue < 7)
             NumValue++;
         else
-            MessageBox.Show("Semaphore places must less than 15","Warning",MessageBoxButton.OK,MessageBoxImage.Warning);
+            MessageBox.Show("Semaphore places must less than 7","Warning",MessageBoxButton.OK,MessageBoxImage.Warning);
     }
 
     private void txtNum_TextChanged(object sender,TextChangedEventArgs e)
     {
-        if (txtNum == null)
+        if (SCountTxtbox.Text == null)
         {
             return;
         }
 
-        if (!int.TryParse(txtNum.Text, out _numValue))
-            txtNum.Text = _numValue.ToString();
+        if (!int.TryParse(SCountTxtbox.Text, out _numValue))
+            SCountTxtbox.Text = _numValue.ToString();
     }
 }

@@ -3,10 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:Source"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="750">
+    <Window.Resources>
+        <local:App x:Key="SCount"/>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -32,7 +34,7 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Text="Places in Semaphore" FontSize="16"/>
-            <TextBox Width="100" FontSize="20" BorderThickness="0" Grid.Row="1" x:Name="txtNum" x:FieldModifier="private" Text="0" TextChanged="txtNum_TextChanged" HorizontalAlignment="Left" />
+            <TextBox Name="SCountTxtbox" Width="100" FontSize="20" BorderThickness="0" Grid.Row="1" Text="{Binding Path=NumValue}" TextChanged="txtNum_TextChanged" HorizontalAlignment="Left" />
             <Button Grid.Row="1" x:Name="cmdUp" x:FieldModifier="private" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="10" Padding="0,-4,0,0" Content="▲" Width="15" Click="cmdUp_Click" Height="15" BorderThickness="0" />
             <Button Grid.Row="1" x:Name="cmdDown" x:FieldModifier="private" FontSize="10" HorizontalAlignment="Right" Margin="0 0 16 0" VerticalAlignment="Center" Padding="0,-4,0,0" Content="▼" Width="15" Height="15" Click="cmdDown_Click" BorderThickness="0"  />
         </Grid>
