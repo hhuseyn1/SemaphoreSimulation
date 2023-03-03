@@ -22,10 +22,24 @@
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition/>
             <ColumnDefinition Width="3*"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Row="0" Grid.Column="1" FontSize="15.5" Text="Working threads" VerticalAlignment="Bottom"/>
         <TextBlock Grid.Row="0" Grid.Column="3" FontSize="15.5" Text="Waiting threads" VerticalAlignment="Bottom"/>
         <TextBlock Grid.Row="0" Grid.Column="5" FontSize="15.5" Text="Created threads" VerticalAlignment="Bottom"/>
+
+        <Grid Grid.Row="1" Grid.Column="1">
+            <ListBox Name="WorkingLBox" ItemsSource="{Binding Path=Working}" MouseDoubleClick="WorkingLBox_MouseDoubleClick" />
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="3">
+            <ListBox Name="WaitingLBox" ItemsSource="{Binding Path=Waiting}" />
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="5">
+            <ListBox Name="CreatedLBox" ItemsSource="{Binding Path=Created}" MouseDoubleClick="CreatedLBox_MouseDoubleClick" />
+        </Grid>
+
 
         <Grid Grid.Row="2" Grid.Column="1">
             <Grid.RowDefinitions>
@@ -39,6 +53,6 @@
             <Button Grid.Row="1" x:Name="cmdDown" x:FieldModifier="private" FontSize="10" HorizontalAlignment="Right" Margin="0 0 16 0" VerticalAlignment="Center" Padding="0,-4,0,0" Content="▼" Width="15" Height="15" Click="cmdDown_Click" BorderThickness="0"  />
         </Grid>
 
-        <Button Grid.Row="2" Grid.Column="7" Content="Create new" Width="100" Height="30" HorizontalAlignment="Center" BorderThickness="0" FontWeight="SemiBold"/>
+        <Button Grid.Row="2" Grid.Column="5" Content="Create new" Width="100" Height="30" HorizontalAlignment="Center" BorderThickness="0" FontWeight="SemiBold" Click="Button_Click"/>
     </Grid>
 </Window>
